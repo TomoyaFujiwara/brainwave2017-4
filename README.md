@@ -2,4 +2,4 @@
 hello!!!!
 Takahiro Miura
 Tomoya Fujiwara
-Takumi Hayashi
+Takumi Hayashi (林拓海)
