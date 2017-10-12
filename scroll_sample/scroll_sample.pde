@@ -19,13 +19,16 @@ void draw() {
   fill(88, 191, 63); 
   rect(0, 700, width, 100);
 
-
   font = createFont("HiraKakuPro-W3", 80);
-
   textFont(font);
   textSize(f);
   i++;
-  text(text.substring(0, min(i/s, k)), 200, 200, f * 11, 100); 
+  text(text.substring(0, min(i/s, k)), 200, 200, f * 11, 100);
+  
+  if (min(i/s, k) == 10) {  
+    i = 0;
+  }
+    
 
   if (keyPressed && key == CODED) {
     if (keyCode == LEFT) {
