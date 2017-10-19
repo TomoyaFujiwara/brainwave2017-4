@@ -6,7 +6,7 @@ class Message{
   String print_message = "this is message.";
   Boolean state = false; 
   int ran = 300;
-  void display(float time, Player player){
+  void display(float time, Player player, Enemy enemy){
     if (player.state==1 && this.state){
       int x = 10; 
       int i = (int) (time / ran);
@@ -20,6 +20,7 @@ class Message{
       else{
         this.state = false;
         player.state = 0;
+        enemy.state = 1;
         Random rnd = new Random();
         this.ran = (rnd.nextInt(5) + 1)*100;        
       } 
