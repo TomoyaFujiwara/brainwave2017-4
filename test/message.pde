@@ -6,7 +6,7 @@ class Message{
   Boolean state = false; 
   
   void display(float time, Player player){
-    if (player.state && state){
+    if (player.state==1 && this.state){
       int x = 10; 
       int i = (int) (time / 300);
       if (i < print_message.length()){
@@ -18,7 +18,7 @@ class Message{
       }
       else{
         this.state = false;
-        player.state = false;
+        player.state = 0;
       } 
     }
   }

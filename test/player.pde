@@ -1,8 +1,7 @@
 class Player{
   float x, y;
   float shape_x, shape_y;
-  boolean state;
-  PImage img;
+  int state;
   PImage[] imgs;
 
   Player(float x, float y, float shape_x, float shape_y) {
@@ -10,15 +9,15 @@ class Player{
     this.y = y;
     this.shape_x = shape_x;
     this.shape_y = shape_y;
-    this.state = false;
-    this.imgs = new PImage[4];
+    this.state = 0;
+    this.imgs = new PImage[5];
   }
   
-  void set_img(PImage img){
-    this.img = img;
+  void set_img(PImage run_img, PImage dead_img){
     for (int i=0; i<4; i++){
-      this.imgs[i] = this.img.get(i*15,0,15,20);
+      this.imgs[i] = run_img.get(i*15,0,15,20);
     }
+    imgs[4] = dead_img.get(0, 0, 15, 20);
   }
   
   Boolean lim(){
@@ -30,18 +29,24 @@ class Player{
   }
   
   void move() {
-    if ((this.state) && (this.lim())) {
+    if ((this.state == 1) && (this.lim())) {
       this.x += 1;
+    }
+    else if ((this.state == 2) && (this.lim())){
+      this.y -= 1;
     }
   }
 
   void display(int frame) {
-    if (this.state){
+    if (this.state == 1){
       int i = frame % 4;
       image(imgs[i], this.x, this.y, 45, 60);
     }
-    else{
+    else if(this.state == 0){
       image(imgs[3], this.x, this.y, 45, 60);
+    }
+    else if(this.state == 2){
+      image(imgs[4], this.x, this.y, 45, 60);
     }
   }
 }
