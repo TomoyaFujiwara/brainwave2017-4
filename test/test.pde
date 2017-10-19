@@ -15,8 +15,8 @@ void setup() {
   background_img.resize(1200, 800);
   run_img = loadImage("Running-mario.gif");
   dead_img = loadImage("Dead-mario.gif");
-  stand_img = loadImage("/Users/takumi/Desktop/brain/brainwave2017-4/luigi-stand.png");
-  sit_img = loadImage("/Users/takumi/Desktop/brain/brainwave2017-4/luigi-sit.png");
+  stand_img = loadImage("luigi-stand.png");
+  sit_img = loadImage("luigi-sit.png");
   player.set_img(run_img, dead_img);
   enemy.set_img(stand_img, sit_img);
 }
