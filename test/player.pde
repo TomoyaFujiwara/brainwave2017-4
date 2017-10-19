@@ -17,7 +17,7 @@ class Player{
     for (int i=0; i<4; i++){
       this.imgs[i] = run_img.get(i*15,0,15,20);
     }
-    imgs[4] = dead_img.get(0, 0, 15, 20);
+    imgs[4] = dead_img.get(0, 0, 16, 24);
   }
   
   Boolean lim(){
@@ -33,7 +33,7 @@ class Player{
       this.x += 1;
     }
     else if ((this.state == 2) && (this.lim())){
-      this.y -= 1;
+      this.y += 5;
     }
   }
 
