@@ -26,11 +26,6 @@ void change_state(){
     if (keyCode == RIGHT) {
       frame = 0;
       player.state = true;
-    } 
-    else if (keyCode == LEFT){
-      player.state = false;
-    }
-    else if (keyCode == UP){
       pressed_time = millis();
       message.state = true;
     }
