@@ -37,5 +37,5 @@ void display(){
   ground.display();
   player.move();
   player.display(frame);
-  message.display(current_time - pressed_time);
+  message.display(current_time - pressed_time, player);
 }
