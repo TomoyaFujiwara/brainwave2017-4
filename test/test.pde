@@ -1,5 +1,5 @@
 Ground ground = new Ground();
-Player player = new Player(10, 10, 0, 0); 
+Player player = new Player(10, 660, 0, 0); 
 Message message = new Message();
 PImage run_img, dead_img, background_img;
 float current_time;
