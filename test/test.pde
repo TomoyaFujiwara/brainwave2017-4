@@ -3,7 +3,8 @@ Player player = new Player(10, 660, 0, 0);
 Enemy enemy = new Enemy(900, 580, 0, 0); 
 Message message = new Message();
 Result result = new Result();
-PImage run_img, dead_img, stand_img, sit_img, background_img, result_img;
+Clear clear = new Clear();
+PImage run_img, dead_img, stand_img, sit_img, background_img, result_img, clear_img;
 float current_time;
 float pressed_time = 0;
 int frame = 0;
@@ -19,9 +20,11 @@ void setup() {
   stand_img = loadImage("luigi-stand.png");
   sit_img = loadImage("luigi-sit.png");
   result_img = loadImage("/Users/takumi/Desktop/brain/brainwave2017-4/test/result.png");
+  clear_img = loadImage("/Users/takumi/Desktop/brain/brainwave2017-4/test/clear.png");
   player.set_img(run_img, dead_img);
   enemy.set_img(stand_img, sit_img);
   result.set_img(result_img);
+  clear.set_img(clear_img);
 }
 
 void draw() {
@@ -55,5 +58,6 @@ void display(){
   player.display(frame);
   enemy.display();
   result.display(player, enemy);
+  clear.display(player);
   message.display(current_time - pressed_time, player, enemy);
 }
