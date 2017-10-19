@@ -1,3 +1,6 @@
+import oscP5.*;
+import netP5.*;
+
 Ground ground = new Ground();
 Player player = new Player(10, 660, 0, 0); 
 Enemy enemy = new Enemy(900, 580, 0, 0); 
@@ -6,6 +9,9 @@ PImage run_img, dead_img, stand_img, sit_img, background_img;
 float current_time;
 float pressed_time = 0;
 int frame = 0;
+final float MAX_MICROVOLTS = 1682.815;
+int pointer = 0;
+float[][] buffer = new float[4][50];
 
 void setup() {
   frameRate(20);
@@ -51,4 +57,16 @@ void display(){
   player.display(frame);
   enemy.display();
   message.display(current_time - pressed_time, player, enemy);
+}
+
+void oscEvent(OscMessage msg){
+  float data;
+  if(msg.checkAddrPattern("/muse/elements/alpha_relative")){
+    for(int ch = 0; ch < 4; ch++){
+      data = msg.get(ch).floatValue();
+      data = (data - (MAX_MICROVOLTS / 2)) / (MAX_MICROVOLTS / 2); // -1.0 1.0
+      buffer[ch][pointer] = data;
+    }
+    pointer = (pointer + 1) % 50;
+  }
 }
