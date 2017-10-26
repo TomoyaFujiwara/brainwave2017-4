@@ -17,7 +17,6 @@ class Message{
         sum += buffer[i][j];
       }
     }
-    println(Float.toString(sum));
     return false;
   }
   

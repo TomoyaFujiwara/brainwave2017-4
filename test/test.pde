@@ -15,10 +15,10 @@ Music music = new Music(dead_sound, bgm, clear_sound);
 PImage run_img, dead_img, stand_img, sit_img, background_img, result_img, clear_img;
 float current_time;
 int frame = 0;
+
 final float MAX_MICROVOLTS = 1682.815;
 int pointer = 0;
-float[][] buffer = new float[4][50];
-
+float[][] buffer = new float[4][220];
 final int PORT = 5000;
 OscP5 oscP5 = new OscP5(this, PORT);
 
@@ -73,18 +73,22 @@ void display(){
   enemy.display();
   result.display(player, enemy);
   clear.display(player);
+  music.play_dead(player);
+  music.play_clear(player);
+  
   message.display(current_time, player, enemy, result, buffer);
 }
 
 void oscEvent(OscMessage msg){
   float data = 0;
   if(msg.checkAddrPattern("/muse/elements/alpha_relative")){
+  //if(msg.checkAddrPattern("/muse/eeg")){
     for(int ch = 0; ch < 4; ch++){
       data = msg.get(ch).floatValue();
-      data = (data - (MAX_MICROVOLTS / 2)) / (MAX_MICROVOLTS / 2); // -1.0 1.0
+      //data = (data - (MAX_MICROVOLTS / 2)) / (MAX_MICROVOLTS / 2); // -1.0 1.0
       buffer[ch][pointer] = data;
     }
-    pointer = (pointer + 1) % 50;
+    pointer = (pointer + 1) % 220;
     println(data);
   }
 }
