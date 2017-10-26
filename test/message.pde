@@ -3,7 +3,7 @@ import java.util.Random;
 PFont font;
 
 class Message{
-  String print_message = "this is message.";
+  String print_message = "だるまさんがころんだ ";
   Boolean state = false; 
   Boolean stop = false;
   float stop_time;
@@ -22,14 +22,13 @@ class Message{
   
   void display(float time, Player player, Enemy enemy, Result result, float[][] buffer){
     if (player.state==1 && this.state){
-      int x = 10; 
       int i = (int) (time / ran);
       if (i < print_message.length()){
         fill(255, 255, 255);
         font = createFont("Arial",20,true);
         textFont(font);
         textSize(80);
-        text(print_message.substring(0, i),x,height/2);
+        text(print_message.substring(0, i),200,300);
       }
       else{
         this.state = false;
