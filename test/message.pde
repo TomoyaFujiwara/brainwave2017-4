@@ -5,8 +5,15 @@ PFont font;
 class Message{
   String print_message = "this is message.";
   Boolean state = false; 
+  Boolean stop = false;
+  float stop_time;
   int ran = 300;
-  void display(float time, Player player, Enemy enemy){
+  
+  Boolean death(float[][] buffer){
+    return true;
+  }
+  
+  void display(float time, Player player, Enemy enemy, Result result, float[][] buffer){
     if (player.state==1 && this.state){
       int x = 10; 
       int i = (int) (time / ran);
@@ -22,8 +29,19 @@ class Message{
         player.state = 0;
         enemy.state = 1;
         Random rnd = new Random();
-        this.ran = (rnd.nextInt(5) + 1)*100;        
-      } 
+        this.ran = (rnd.nextInt(5) + 1)*100;
+        this.stop_time = millis();
+        this.stop = true;
+      }
+    }
+    else if (millis() - this.stop_time > 5000 && this.stop){
+      this.stop = false;
+      if (death(buffer) == true){
+        player.state = 2;
+        result.state = 1;
+      }
     }
   }
+  
+
 }
