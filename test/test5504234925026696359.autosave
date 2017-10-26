@@ -2,9 +2,8 @@ import oscP5.*;
 import netP5.*;
 import processing.sound.*;
 SoundFile dead_sound = new SoundFile(this, "/Users/miuratakahiro/Documents/github/brainwave2017-4/test/dead-2.mp3");
-SoundFile bgm = new SoundFile(this, "/Users/miuratakahiro/Documents/github/brainwave2017-4/test/bgm.mp3");
+SoundFile bgm = new SoundFile(this, "/Users/miuratakahiro/Douments/brain/brainwave2017-4/test/bgm.mp3");
 
-Start start = new Start();
 Ground ground = new Ground();
 Player player = new Player(10, 660, 0, 0); 
 Enemy enemy = new Enemy(900, 580, 0, 0); 
@@ -12,13 +11,12 @@ Message message = new Message();
 Result result = new Result();
 Clear clear = new Clear();
 Music music = new Music(dead_sound, bgm);
-PImage start_img, run_img, dead_img, stand_img, sit_img, background_img, result_img, clear_img;
+PImage run_img, dead_img, stand_img, sit_img, background_img, result_img, clear_img;
 float current_time;
 int frame = 0;
 final float MAX_MICROVOLTS = 1682.815;
 int pointer = 0;
 float[][] buffer = new float[4][50];
-boolean isStart = true;
 
 void setup() {
   frameRate(20);
@@ -26,14 +24,12 @@ void setup() {
   size(1200, 800);
   background_img = loadImage("mario-background-min.png");
   background_img.resize(1200, 800);
-  start_img = loadImage("start.png");
   run_img = loadImage("Running-mario.gif");
   dead_img = loadImage("Dead-mario.gif");
   stand_img = loadImage("luigi-stand.png");
   sit_img = loadImage("luigi-sit.png");
   result_img = loadImage("result.png");
   clear_img = loadImage("clear.png");
-  start.set_img(start_img);
   player.set_img(run_img, dead_img);
   enemy.set_img(stand_img, sit_img);
   result.set_img(result_img);
@@ -68,7 +64,6 @@ void change_state(){
 void display(){
   clear();
   ground.display(background_img);
-  start.display();
   player.move();
   player.display(frame);
   enemy.display();
