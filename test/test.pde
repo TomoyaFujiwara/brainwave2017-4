@@ -1,8 +1,9 @@
 import oscP5.*;
 import netP5.*;
 import processing.sound.*;
-SoundFile dead_sound = new SoundFile(this, "dead-2.mp3");
-SoundFile bgm = new SoundFile(this, "bgm.mp3");
+SoundFile dead_sound = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/dead-2.mp3");
+SoundFile bgm = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/bgm.mp3");
+SoundFile clear_sound = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/clear.mp3");
 
 Ground ground = new Ground();
 Player player = new Player(10, 660, 0, 0); 
@@ -10,13 +11,16 @@ Enemy enemy = new Enemy(900, 580, 0, 0);
 Message message = new Message();
 Result result = new Result();
 Clear clear = new Clear();
-Music music = new Music(dead_sound, bgm);
+Music music = new Music(dead_sound, bgm, clear_sound);
 PImage run_img, dead_img, stand_img, sit_img, background_img, result_img, clear_img;
 float current_time;
 int frame = 0;
 final float MAX_MICROVOLTS = 1682.815;
 int pointer = 0;
 float[][] buffer = new float[4][50];
+
+final int PORT = 5000;
+OscP5 oscP5 = new OscP5(this, PORT);
 
 void setup() {
   frameRate(20);
@@ -73,7 +77,7 @@ void display(){
 }
 
 void oscEvent(OscMessage msg){
-  float data;
+  float data = 0;
   if(msg.checkAddrPattern("/muse/elements/alpha_relative")){
     for(int ch = 0; ch < 4; ch++){
       data = msg.get(ch).floatValue();
@@ -81,5 +85,6 @@ void oscEvent(OscMessage msg){
       buffer[ch][pointer] = data;
     }
     pointer = (pointer + 1) % 50;
+    println(data);
   }
 }

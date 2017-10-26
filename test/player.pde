@@ -30,7 +30,7 @@ class Player{
   
   void move() {
     if ((this.state == 1) && (this.lim())) {
-      this.x += 1;
+      this.x += 2;
     }
     else if ((this.state == 2) && (this.lim())){
       this.y += 5;

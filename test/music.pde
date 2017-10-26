@@ -4,8 +4,9 @@ class Music {
   int bgm_flg = 0;
   SoundFile dead_sound;
   SoundFile bgm;
+  SoundFile clear_sound;
   
-  Music(SoundFile dead_sound, SoundFile bgm) {
+  Music(SoundFile dead_sound, SoundFile bgm, SoundFile clear_sound) {
     this.dead_sound = dead_sound;
     this.bgm = bgm;
   }
