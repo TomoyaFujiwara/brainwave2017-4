@@ -1,5 +1,8 @@
 import oscP5.*;
 import netP5.*;
+import processing.sound.*;
+SoundFile dead_sound = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/dead-2.mp3");
+SoundFile bgm = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/bgm.mp3");
 
 Ground ground = new Ground();
 Player player = new Player(10, 660, 0, 0); 
@@ -7,6 +10,7 @@ Enemy enemy = new Enemy(900, 580, 0, 0);
 Message message = new Message();
 Result result = new Result();
 Clear clear = new Clear();
+Music music = new Music(dead_sound, bgm);
 PImage run_img, dead_img, stand_img, sit_img, background_img, result_img, clear_img;
 float current_time;
 int frame = 0;
@@ -47,6 +51,7 @@ void change_state(){
       enemy.state = 0;
       message.pressed_time = millis();
       message.state = true;
+      music.play_bgm();
     }
     else if (keyCode == LEFT) {
       player.state = 2;
