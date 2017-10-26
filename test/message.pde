@@ -6,6 +6,7 @@ class Message{
   String print_message = "だるまさんがころんだ ";
   Boolean state = false; 
   Boolean stop = false;
+  float pressed_time;
   float stop_time;
   int ran = 300;
   
@@ -17,12 +18,12 @@ class Message{
       }
     }
     text(Float.toString(sum), 0,0);
-    return(true);
+    return false;
   }
   
   void display(float time, Player player, Enemy enemy, Result result, float[][] buffer){
     if (player.state==1 && this.state){
-      int i = (int) (time / ran);
+      int i = (int) ((time - this.pressed_time) / ran);
       if (i < print_message.length()){
         fill(255, 255, 255);
         font = createFont("Arial",20,true);
@@ -45,6 +46,13 @@ class Message{
       if (death(buffer) == true){
         player.state = 2;
         result.state = 1;
+      }
+      else{
+        player.state = 1;
+        enemy.state = 0;
+        this.pressed_time = millis();
+        this.state = true;
+        frame  = 0;
       }
     }
   }

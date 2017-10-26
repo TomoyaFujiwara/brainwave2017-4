@@ -13,8 +13,6 @@ Clear clear = new Clear();
 Music music = new Music(dead_sound, bgm);
 PImage run_img, dead_img, stand_img, sit_img, background_img, result_img, clear_img;
 float current_time;
-float pressed_time = 0;
-float stop_time = 0;
 int frame = 0;
 final float MAX_MICROVOLTS = 1682.815;
 int pointer = 0;
@@ -51,7 +49,7 @@ void change_state(){
       frame = 0;
       player.state = 1;
       enemy.state = 0;
-      pressed_time = millis();
+      message.pressed_time = millis();
       message.state = true;
       music.play_bgm();
     }
@@ -71,8 +69,7 @@ void display(){
   enemy.display();
   result.display(player, enemy);
   clear.display(player);
-  music.play_dead(player);
-  message.display(current_time - pressed_time, player, enemy, result, buffer);
+  message.display(current_time, player, enemy, result, buffer);
 }
 
 void oscEvent(OscMessage msg){
