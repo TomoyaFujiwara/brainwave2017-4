@@ -10,7 +10,14 @@ class Message{
   int ran = 300;
   
   Boolean death(float[][] buffer){
-    return true;
+    float sum = 0;
+    for (int i=0; i<buffer.length; i++){
+      for (int j=0; j<buffer[i].length; j++){
+        sum += buffer[i][j];
+      }
+    }
+    text(Float.toString(sum), 0,0);
+    return(true);
   }
   
   void display(float time, Player player, Enemy enemy, Result result, float[][] buffer){
