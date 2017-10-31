@@ -57,5 +57,9 @@ class Message{
     }
   }
   
+  void restart(){
+    state = false;
+    stop = false;
+  }
 
 }

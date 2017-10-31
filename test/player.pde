@@ -30,7 +30,7 @@ class Player{
   
   void move() {
     if ((this.state == 1) && (this.lim())) {
-      this.x += 1;
+      this.x += 2;
     }
     else if ((this.state == 2) && (this.lim())){
       this.y += 5;
@@ -48,5 +48,11 @@ class Player{
     else if(this.state == 2){
       image(imgs[4], this.x, this.y, 45, 60);
     }
+  }
+  
+  void restart(){
+    x = 10;
+    y = 660;
+    state = 0;
   }
 }

@@ -8,11 +8,11 @@ class Start {
   
   void display(){
      if (isStart){
-       image(start_img,350, 150, 500, 300);
-       if (key == ' '){
-          background(background_img);
-          isStart = false;
-       }
+         image(start_img,350, 150, 500, 300);
+         if (key == ' '){
+            background(background_img);
+            isStart = false;
+         }
      }
   }
 }

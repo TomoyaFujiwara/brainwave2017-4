@@ -40,6 +40,15 @@ void setup() {
   clear.set_img(clear_img);
 }
 
+void gameStart() {
+  isStart = true;
+  frame = 0;
+  player.restart();
+  enemy.restart();
+  message.restart();
+  display();
+}
+
 void draw() {
   current_time = millis();
   change_state();
@@ -47,40 +56,44 @@ void draw() {
   frame++;
 }
 
-void change_state(){
+void change_state() {
   if (keyPressed) {
     if (keyCode == RIGHT) {
       frame = 0;
-      player.state = 1;
-      enemy.state = 0;
+      if (player.state != 2) {
+        player.state = 1;
+        enemy.state = 0;
+      }
       message.pressed_time = millis();
       message.state = true;
       music.play_bgm();
-    }
-    else if (keyCode == LEFT) {
+    } else if (keyCode == LEFT) {
       player.state = 2;
       result.state = 1;
+    } else if (keyCode == UP) {
+      gameStart();
     }
-  } 
-  
+  }
 }
 
-void display(){
+void display() {
   clear();
   ground.display(background_img);
   start.display();
-  player.move();
-  player.display(frame);
-  enemy.display();
-  result.display(player, enemy);
-  clear.display(player);
-  message.display(current_time, player, enemy, result, buffer);
+  if (isStart == false) {
+    player.move();
+    player.display(frame);
+    enemy.display();
+    result.display(player, enemy);
+    clear.display(player);
+    message.display(current_time, player, enemy, result, buffer);
+  }
 }
 
-void oscEvent(OscMessage msg){
+void oscEvent(OscMessage msg) {
   float data;
-  if(msg.checkAddrPattern("/muse/elements/alpha_relative")){
-    for(int ch = 0; ch < 4; ch++){
+  if (msg.checkAddrPattern("/muse/elements/alpha_relative")) {
+    for (int ch = 0; ch < 4; ch++) {
       data = msg.get(ch).floatValue();
       data = (data - (MAX_MICROVOLTS / 2)) / (MAX_MICROVOLTS / 2); // -1.0 1.0
       buffer[ch][pointer] = data;

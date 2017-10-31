@@ -26,4 +26,8 @@ class Enemy {
     }
     
   }
+  
+  void restart(){
+    state = 0;
+  }
 }
