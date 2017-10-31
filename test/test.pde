@@ -57,21 +57,23 @@ void draw() {
 }
 
 void change_state() {
-  if (keyPressed) {
-    if (keyCode == RIGHT) {
-      frame = 0;
-      if (player.state != 2) {
-        player.state = 1;
-        enemy.state = 0;
+  if (!(isStart)) {
+    if (keyPressed) {
+      if (keyCode == RIGHT) {
+        frame = 0;
+        if (player.state != 2) {
+          player.state = 1;
+          enemy.state = 0;
+        }
+        message.pressed_time = millis();
+        message.state = true;
+        music.play_bgm();
+      } else if (keyCode == LEFT) {
+        player.state = 2;
+        result.state = 1;
+      } else if (keyCode == UP) {
+        gameStart();
       }
-      message.pressed_time = millis();
-      message.state = true;
-      music.play_bgm();
-    } else if (keyCode == LEFT) {
-      player.state = 2;
-      result.state = 1;
-    } else if (keyCode == UP) {
-      gameStart();
     }
   }
 }
