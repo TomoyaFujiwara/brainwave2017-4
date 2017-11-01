@@ -49,4 +49,10 @@ class Player{
       image(imgs[4], this.x, this.y, 45, 60);
     }
   }
+  
+  void restart(){
+    x = 10;
+    y = 660;
+    state = 0;
+  }
 }
