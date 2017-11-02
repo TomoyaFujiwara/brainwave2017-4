@@ -12,12 +12,22 @@ class Message{
   
   Boolean death(float[][] buffer){
     float sum = 0;
-    for (int i=0; i<buffer.length; i++){
-      for (int j=0; j<buffer[i].length; j++){
-        sum += buffer[i][j];
+    for (int j=0; j<50; j++){
+      float max = 0;
+      for (int i = 0; i<4; i++){
+        if(buffer[i][j] > max) {
+          max = buffer[i][j];
+        }
       }
+      sum += max;
     }
-    return false;
+    println(sum);
+    if (sum > 15){
+      return false;
+    }
+    else{
+      return true;
+    }
   }
   
   void display(float time, Player player, Enemy enemy, Result result, float[][] buffer){

@@ -104,10 +104,12 @@ void oscEvent(OscMessage msg) {
     //if(msg.checkAddrPattern("/muse/eeg")){
     for (int ch = 0; ch < 4; ch++) {
       data = msg.get(ch).floatValue();
+      if (Float.isNaN(data)) {
+        data = 0;
+      }
       //data = (data - (MAX_MICROVOLTS / 2)) / (MAX_MICROVOLTS / 2); // -1.0 1.0
       buffer[ch][pointer] = data;
     }
     pointer = (pointer + 1) % 220;
-    println(data);
   }
 }
