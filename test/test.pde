@@ -57,32 +57,58 @@ void gameStart() {
 
 void draw() {
   current_time = millis();
-  change_state();
+  change_state_brain();
   display();
   frame++;
 }
 
-void change_state() {
+void change_state_brain() {
   if (!(isStart)) {
-    if (keyPressed) {
-      if (keyCode == RIGHT) {
-        frame = 0;
-        if (player.state != 2) {
-          player.state = 1;
-          enemy.state = 0;
-        }
-        message.pressed_time = millis();
-        message.state = true;
-        music.play_bgm();
-      } else if (keyCode == LEFT) {
-        player.state = 2;
-        result.state = 1;
-      } else if (keyCode == UP) {
-        gameStart();
+    float max = 0;
+    for (int i = 0; i<4; i++) {
+      if (buffer[i][0] > max) {
+        max = buffer[i][0];
       }
+    }
+    if (max < 15) {
+      //frame = 0;
+      if (player.state != 2) {
+        player.state = 1;
+        //enemy.state = 0;
+      }
+      //message.pressed_time = millis();
+      //message.state = true;
+      music.play_bgm();
+    //} else if (keyCode == LEFT) {
+    //  player.state = 2;
+    //  result.state = 1;
+    } else {
+      player.state = 0;
     }
   }
 }
+
+//void change_state() {
+//  if (!(isStart)) {
+//    if (keyPressed) {
+//      if (keyCode == RIGHT) {
+//        frame = 0;
+//        if (player.state != 2) {
+//          player.state = 1;
+//          enemy.state = 0;
+//        }
+//        message.pressed_time = millis();
+//        message.state = true;
+//        music.play_bgm();
+//      } else if (keyCode == LEFT) {
+//        player.state = 2;
+//        result.state = 1;
+//      } else if (keyCode == UP) {
+//        gameStart();
+//      }
+//    }
+//  }
+//}
 
 void display() {
   clear();
