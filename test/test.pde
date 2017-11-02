@@ -1,9 +1,9 @@
 import oscP5.*;
 import netP5.*;
 import processing.sound.*;
-SoundFile dead_sound = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/dead-2.mp3");
-SoundFile bgm = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/bgm.mp3");
-SoundFile clear_sound = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/clear.mp3");
+SoundFile dead_sound = new SoundFile(this, "/Users/miuratakahiro/Documents/github/brainwave2017-4/test/dead-2.mp3");
+SoundFile bgm = new SoundFile(this, "/Users/miuratakahiro/Documents/github/brainwave2017-4/test/bgm.mp3");
+SoundFile clear_sound = new SoundFile(this, "/Users/miuratakahiro/Documents/github/brainwave2017-4/test/clear.mp3");
 
 Start start = new Start();
 Ground ground = new Ground();
@@ -42,10 +42,12 @@ void setup() {
   enemy.set_img(stand_img, sit_img);
   result.set_img(result_img);
   clear.set_img(clear_img);
+  gameStart();
 }
 
 void gameStart() {
   isStart = true;
+  player.state = 1;
   frame = 0;
   player.restart();
   enemy.restart();

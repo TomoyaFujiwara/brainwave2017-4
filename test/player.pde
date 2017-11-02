@@ -53,6 +53,6 @@ class Player{
   void restart(){
     x = 10;
     y = 660;
-    state = 0;
+    state = 1;
   }
 }
