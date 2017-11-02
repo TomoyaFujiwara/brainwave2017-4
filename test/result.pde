@@ -10,7 +10,7 @@ class Result {
   
   void display(Player player, Enemy enemy){
     if (state == 1) {
-      String score = str(int(player.x)) + " / " + str(int(enemy.x - 30));
+      String score = str(int(player.x * 100 / 870)) + " / " + str(100);
       image(result_img, 350, 150, 500, 300);
       fill(0);
       text(score, 430, 390);
