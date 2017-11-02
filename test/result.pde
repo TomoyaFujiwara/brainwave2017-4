@@ -16,4 +16,8 @@ class Result {
       text(score, 430, 390);
     }
   }
+  
+  void restart(){
+    state = 0;
+  }
 }

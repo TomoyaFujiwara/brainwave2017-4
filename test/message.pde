@@ -4,7 +4,7 @@ PFont font;
 
 class Message{
   String print_message = "だるまさんがころんだ ";
-  Boolean state = false; 
+  Boolean state = true; 
   Boolean stop = false;
   float pressed_time;
   float stop_time;

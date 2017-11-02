@@ -51,7 +51,6 @@ void gameStart() {
   player.restart();
   enemy.restart();
   message.restart();
-  result.restart();
   display();
 }
 
@@ -87,7 +86,7 @@ void change_state() {
 void display() {
   clear();
   ground.display(background_img);
-  start.display(message, music);
+  start.display(message);
   if (isStart == false) {
     player.move();
     player.display(frame);

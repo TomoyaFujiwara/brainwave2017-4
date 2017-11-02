@@ -6,7 +6,7 @@ class Start {
     this.start_img = img;
   }
   
-  void display(Message message){
+  void display(Message message, Music music){
      if (isStart){
          image(start_img,350, 150, 500, 300);
          if (key == ' '){
@@ -14,6 +14,7 @@ class Start {
             isStart = false;
             message.pressed_time = millis();
             message.state = true ;
+            music.play_bgm();
          }
      }
   }
