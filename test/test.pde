@@ -10,6 +10,7 @@ Ground ground = new Ground();
 Player player = new Player(10, 660, 0, 0); 
 Enemy enemy = new Enemy(900, 580, 0, 0); 
 Message message = new Message();
+Meter meter = new Meter();
 Result result = new Result();
 Clear clear = new Clear();
 Music music = new Music(dead_sound, bgm, clear_sound);
@@ -23,6 +24,7 @@ float[][] buffer = new float[4][220];
 final int PORT = 5000;
 OscP5 oscP5 = new OscP5(this, PORT);
 boolean isStart = true;
+float max = 0;
 
 void setup() {
   frameRate(20);
@@ -64,10 +66,10 @@ void draw() {
 
 void change_state_brain() {
   if (!(isStart)) {
-    float max = 0;
+    max = 0;
     for (int i = 0; i<4; i++) {
-      if (buffer[i][0] > max) {
-        max = buffer[i][0];
+      if (buffer[i][pointer] > max) {
+        max = buffer[i][pointer];
       }
     }
     if (keyCode == ENTER) {
@@ -121,6 +123,7 @@ void display() {
     player.move();
     player.display(frame);
     enemy.display();
+    meter.display(current_time,max);
     result.display(player, enemy);
     clear.display(player);
     music.play_dead(player);
