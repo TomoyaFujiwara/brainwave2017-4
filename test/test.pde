@@ -70,7 +70,10 @@ void change_state_brain() {
         max = buffer[i][0];
       }
     }
-    if (max < 15) {
+    if (keyCode == ENTER) {
+      gameStart();
+    }
+    if (max < 0) {
       //frame = 0;
       if (player.state != 2) {
         player.state = 1;
@@ -79,9 +82,9 @@ void change_state_brain() {
       //message.pressed_time = millis();
       //message.state = true;
       music.play_bgm();
-    //} else if (keyCode == LEFT) {
-    //  player.state = 2;
-    //  result.state = 1;
+      //} else if (keyCode == LEFT) {
+      //  player.state = 2;
+      //  result.state = 1;
     } else {
       player.state = 0;
     }
