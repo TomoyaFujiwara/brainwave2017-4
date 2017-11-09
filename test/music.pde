@@ -36,4 +36,11 @@ class Music {
     }
   }
   
+  void restart() {
+    bgm.stop();
+    this.bgm_flg = 0;
+    this.dead_flg = 0;
+  }
+  
+  
 }

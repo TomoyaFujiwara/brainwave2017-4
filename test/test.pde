@@ -1,9 +1,9 @@
 import oscP5.*;
 import netP5.*;
 import processing.sound.*;
-SoundFile dead_sound = new SoundFile(this, "/Users/miuratakahiro/Documents/github/brainwave2017-4/test/dead-2.mp3");
-SoundFile bgm = new SoundFile(this, "/Users/miuratakahiro/Documents/github/brainwave2017-4/test/bgm.mp3");
-SoundFile clear_sound = new SoundFile(this, "/Users/miuratakahiro/Documents/github/brainwave2017-4/test/clear.mp3");
+SoundFile dead_sound = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/dead-2.mp3");
+SoundFile bgm = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/bgm.mp3");
+SoundFile clear_sound = new SoundFile(this, "/Users/takumi/Desktop/brain/brainwave2017-4/test/clear.mp3");
 
 Start start = new Start();
 Ground ground = new Ground();
@@ -54,11 +54,20 @@ void gameStart() {
   enemy.restart();
   message.restart();
   result.restart();
+  music.restart();
   display();
 }
 
 void draw() {
   current_time = millis();
+  max = 0;
+  for (int i = 0; i<4; i++) {
+      int j = max(0, pointer-1);
+      if (buffer[i][j] > max) {
+        max = buffer[i][j];
+      }
+    }
+   println(max);
   change_state();
   display();
   frame++;
@@ -66,10 +75,10 @@ void draw() {
 
 void change_state() {
   if (!(isStart)) {
-    max = 0;
     for (int i = 0; i<4; i++) {
-      if (buffer[i][pointer] > max) {
-        max = buffer[i][pointer];
+      int j = max(0, pointer-1);
+      if (buffer[i][j] > max) {
+        max = buffer[i][j];
       }
     }
     if (keyPressed) {

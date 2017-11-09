@@ -21,8 +21,7 @@ class Message{
       }
       sum += max;
     }
-    println(sum);
-    if (sum > 15){
+    if (sum > 17.5){
       return false;
     }
     else{
