@@ -7,7 +7,7 @@ class Meter {
   float y = 500;
   float size_x = 30;
   float size_y;
-  float border = 150;
+  float border = 175;
   Boolean state = true; 
   Boolean stop = false;
   //float pressed_time;
@@ -19,8 +19,8 @@ class Meter {
   void display(float time,float max) {
       //println(millis()-time);
       line(x-5,y-border,x+size_x+5,y-border);
-      max = random(100,200); //             remove to move
-      size_y = max;
+      //max = random(100,200); //             remove to move
+      size_y = max * 500;
       rectMode(CORNERS);
       strokeJoin(ROUND);
       colorMode(RGB,256);
